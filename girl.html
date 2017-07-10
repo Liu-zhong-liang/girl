@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <canvas width="400" height="400" id="cas" style="border: 5px solid pink"></canvas>
+  <script>
+     var cas=document.getElementById("cas");
+     var ctx=cas.getContext("2d");
+     var index=0;
+     var x=ctx.canvas.width/2-20;
+     var y=ctx.canvas.height/2-32;
+     var step=10; 
+    function move(direction){
+      ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
+       var img=new Image();
+       img.src="./img/rabbit.png";
+       img.onload=function () {
+        ctx.drawImage(img,40*index,65*direction,40,65,x,y,40,65);
+        if(index==3){
+          index=0;
+        }else{
+          index++;
+        }
+     }
+    }
+   
+     document.addEventListener("keyup",function(e){
+       switch (e.keyCode){
+        case 37:
+        x-=step;
+        move(1)
+        break;
+        case 38:
+        y-=step;
+        move(3)
+        break;
+        case 39:
+        x+=step;
+        move(2)
+        break;
+        case 40:
+        y+=step;
+        move(0)
+        break;
+
+       }
+     })
+  </script>
+</body>
+</html>
